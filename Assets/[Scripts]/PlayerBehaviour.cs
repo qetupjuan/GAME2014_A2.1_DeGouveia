@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Move();
         CheckIfGrounded();
+        CheckIfGoal();
     }
 
     private void Move()
@@ -97,6 +99,11 @@ public class PlayerBehaviour : MonoBehaviour
         isGrounded = (hit) ? true : false;
     }
 
+    private void CheckIfGoal()
+    {
+
+    }
+
     private float FlipAnimation(float x)
     {
         // depending on direction scale across the x-axis either 1 or -1
@@ -113,6 +120,10 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Platform"))
         {
             transform.SetParent(other.transform);
+        }
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            SceneManager.LoadScene("End Screen");
         }
     }
 
